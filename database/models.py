@@ -1,7 +1,5 @@
 from django.db import models
 
-# Create your models here.
-
 
 class Pokemon(models.Model):
     name = models.CharField(max_length=21)
@@ -62,6 +60,33 @@ class BuildSkills(models.Model):
     name = models.CharField(max_length=21)
     image = models.TextField()
     level = models.CharField(max_length=7)
+
+    def __str__(self):
+        return self.name
+
+
+class Skills(models.Model):
+    pokemon = models.ForeignKey(
+        Pokemon, on_delete=models.CASCADE, related_name='skills')
+    name = models.CharField(max_length=50)
+    type = models.CharField(max_length=21)
+    description = models.TextField()
+    level = models.CharField(max_length=21)
+    image = models.TextField()
+    in_game_image = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+
+class SkillUpgrades(models.Model):
+    skill = models.ForeignKey(
+        Skills, on_delete=models.CASCADE, related_name='skill_upgrades')
+    name = models.CharField(max_length=21)
+    description = models.TextField()
+    level = models.CharField(max_length=21)
+    image = models.TextField()
+    in_game_image = models.TextField()
 
     def __str__(self):
         return self.name

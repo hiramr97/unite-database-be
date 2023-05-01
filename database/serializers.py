@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import Pokemon, Evolution, Builds, HeldItems, BattleItems, BuildSkills
+from .models import Pokemon, Evolution, Builds, HeldItems, BattleItems, BuildSkills, Skills, SkillUpgrades
+
 
 class BuildSkillsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -28,6 +29,19 @@ class BuildsSerializer(serializers.ModelSerializer):
         build_skills = BuildSkillsSerializer(many=True, required=False)
 
 
+class SkillUpgradesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SkillUpgrades
+        fields = '__all__'
+
+
+class SkillsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Skills
+        fields = '__all__'
+        skill_upgrade = SkillUpgradesSerializer(many=True, required=False)
+
+
 class EvolutionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Evolution
@@ -40,3 +54,4 @@ class PokemonSerializer(serializers.ModelSerializer):
         fields = '__all__'
         evolution = EvolutionSerializer(many=True, required=False)
         builds = BuildsSerializer(many=True, required=False)
+        skills = SkillsSerializer(many=True, required=False)
