@@ -9,3 +9,9 @@ class Pokemon(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Evolution(models.Model):
+    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE, related_name='evolution')
+    name = models.CharField(max_length=21)
+    level = models.CharField(max_length=7)
+    image = models.TextField()
