@@ -1,5 +1,12 @@
 from rest_framework import serializers
-from .models import Pokemon, Evolution, Builds, HeldItems
+from .models import Pokemon, Evolution, Builds, HeldItems, BattleItems
+
+
+class BattleItemsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BattleItems
+        fields = '__all__'
+
 
 class HeldItemsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -12,6 +19,7 @@ class BuildsSerializer(serializers.ModelSerializer):
         model = Builds
         fields = '__all__'
         held_items = HeldItemsSerializer(many=True, required=False)
+        battle_itmes = BattleItemsSerializer(many=False, required=False)
 
 
 class EvolutionSerializer(serializers.ModelSerializer):

@@ -34,3 +34,14 @@ class HeldItems(models.Model):
 
     def __str__(self):
         return self.name
+    
+class BattleItems(models.Model):
+    build = models.ForeignKey(Builds, on_delete=models.CASCADE, related_name='battle_items')
+    name = models.CharField(max_length=21)
+    image = models.TextField()
+    optional_name = models.CharField(max_length=21)
+    optional_image = models.TextField()
+
+    def __str__(self):
+        return self.name
+    
