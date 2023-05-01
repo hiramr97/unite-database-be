@@ -1,7 +1,7 @@
 from django.shortcuts import render
-from .models import Pokemon, Evolution, Builds, HeldItems, BattleItems
+from .models import Pokemon, Evolution, Builds, HeldItems, BattleItems, BuildSkills
 from rest_framework import viewsets
-from .serializers import PokemonSerializer, EvolutionSerializer, BuildsSerializer, HeldItemsSerializer, BattleItemsSerializer
+from .serializers import PokemonSerializer, EvolutionSerializer, BuildsSerializer, HeldItemsSerializer, BattleItemsSerializer, BuildSkillsSerializer
 
 # Create your views here.
 class PokemonViewSet(viewsets.ModelViewSet):
@@ -27,3 +27,7 @@ class HeldItemsViewSet(viewsets.ModelViewSet):
 class BattleItemsViewSet(viewsets.ModelViewSet):
     queryset = BattleItems.objects.all()
     serializer_class = BattleItemsSerializer
+
+class BuildSkillsViewSet(viewsets.ModelViewSet):
+    queryset = BuildSkills.objects.all()
+    serializer_class = BuildSkillsSerializer
