@@ -7,9 +7,6 @@ class Pokemon(models.Model):
     role = models.CharField(max_length=21)
     image = models.TextField()
 
-    def __str__(self):
-        return self.name
-
 
 class Evolution(models.Model):
     pokemon = models.ForeignKey(
@@ -18,9 +15,6 @@ class Evolution(models.Model):
     level = models.CharField(max_length=7)
     image = models.TextField()
 
-    def __str__(self):
-        return self.name
-
 
 class Builds(models.Model):
     pokemon = models.ForeignKey(
@@ -28,18 +22,12 @@ class Builds(models.Model):
     name = models.CharField(max_length=21)
     lane = models.CharField(max_length=7)
 
-    def __str__(self):
-        return self.name
-
 
 class HeldItems(models.Model):
     build = models.ForeignKey(
         Builds, on_delete=models.CASCADE, related_name='held_items')
     name = models.CharField(max_length=21)
     image = models.TextField()
-
-    def __str__(self):
-        return self.name
 
 
 class BattleItems(models.Model):
@@ -50,9 +38,6 @@ class BattleItems(models.Model):
     optional_name = models.CharField(max_length=21)
     optional_image = models.TextField()
 
-    def __str__(self):
-        return self.name
-
 
 class BuildSkills(models.Model):
     build = models.ForeignKey(
@@ -61,9 +46,6 @@ class BuildSkills(models.Model):
     image = models.TextField()
     level = models.CharField(max_length=7)
 
-    def __str__(self):
-        return self.name
-
 
 class Skills(models.Model):
     pokemon = models.ForeignKey(
@@ -71,12 +53,9 @@ class Skills(models.Model):
     name = models.CharField(max_length=50)
     type = models.CharField(max_length=21)
     description = models.TextField()
-    level = models.CharField(max_length=21)
-    image = models.TextField()
-    in_game_image = models.TextField()
-
-    def __str__(self):
-        return self.name
+    level = models.CharField(max_length=21, null=True, blank=True)
+    image = models.TextField(null=True, blank=True)
+    in_game_image = models.TextField(null=True, blank=True)
 
 
 class SkillUpgrades(models.Model):
@@ -84,9 +63,6 @@ class SkillUpgrades(models.Model):
         Skills, on_delete=models.CASCADE, related_name='skill_upgrades')
     name = models.CharField(max_length=21)
     description = models.TextField()
-    level = models.CharField(max_length=21)
+    level = models.CharField(max_length=21, null=True, blank=True)
     image = models.TextField()
-    in_game_image = models.TextField()
-
-    def __str__(self):
-        return self.name
+    in_game_image = models.TextField(null=True, blank=True)
