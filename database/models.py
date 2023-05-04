@@ -11,7 +11,7 @@ class Pokemon(models.Model):
 class Evolution(models.Model):
     pokemon = models.ForeignKey(
         Pokemon, on_delete=models.CASCADE, related_name='evolution')
-    name = models.CharField(max_length=21)
+    name = models.CharField(max_length=21, null=True, blank=True)
     level = models.CharField(max_length=7)
     image = models.TextField()
 
