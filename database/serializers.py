@@ -37,11 +37,11 @@ class SkillUpgradesSerializer(serializers.ModelSerializer):
 
 
 class SkillsSerializer(serializers.ModelSerializer):
-    skill_upgrade = SkillUpgradesSerializer(many=True, required=False)
+    skill_upgrades = SkillUpgradesSerializer(many=True, required=False)
 
     class Meta:
         model = Skills
-        fields = '__all__'
+        fields = ('id', 'name', 'type', 'description', 'level', 'image', 'in_game_image', 'pokemon', 'skill_upgrades')
 
 
 class EvolutionSerializer(serializers.ModelSerializer):
