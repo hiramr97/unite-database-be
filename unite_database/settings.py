@@ -22,10 +22,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-rltd7f%&1d=gmkxf3d7zv)w_jn4nv-8p91(b&z6i8jtn%e!y+7'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+import environ
 
-ALLOWED_HOSTS = ['.vercel.app']
+env = environ.Env()
+
+environ.Env.read_env()
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = False
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -84,14 +90,24 @@ WSGI_APPLICATION = 'unite_database.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'unite',
+#         'USER': 'uniteuser',
+#         'PASSWORD': 'unite',
+#         'HOST': 'localhost'
+#     }
+# }
+
+# Render PostgreSQL Database
+
+import dj_database_url
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'unite',
-        'USER': 'uniteuser',
-        'PASSWORD': 'unite',
-        'HOST': 'localhost'
-    }
+
+    'default': dj_database_url.parse(env('DATABASE_URL'))
+
 }
 
 
